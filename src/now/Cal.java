@@ -2,7 +2,6 @@ package now;
 
 
 import java.math.BigDecimal;
-
 import javafx.application.Application;
 import javafx.beans.binding.Bindings;
 import javafx.beans.property.SimpleStringProperty;
@@ -10,6 +9,7 @@ import javafx.stage.Stage;
 import javafx.scene.Scene;
 import javafx.scene.layout.VBox;
 import javafx.scene.control.Button;
+import javafx.scene.control.ComboBox;
 import javafx.scene.control.TextField;
 import javafx.scene.layout.HBox;
 import javafx.geometry.Insets;
@@ -411,6 +411,32 @@ public class Cal extends Application {
     			hBox4.prefWidthProperty().bind(primaryStage.widthProperty());
     			hBox4.getChildren().addAll(dot,num0,mod,sum,equal);
     			
+    			/* Make Horizontal box to contain menus. (This is the HBox you want to use if you want to add more menus at the top). 
+    			 * Usage is: menuBox.getChildren().addAll(your, items, go, here); */
+    			
+    	        HBox menuBox = new HBox();
+    	        
+    			/* End making menuBox */
+    			
+    			
+    			/* Make base conversion drop down menu*/
+    			
+    			ComboBox<String> baseComboBox = new ComboBox<String>();
+    			baseComboBox.setValue("Bases");					// This is the text you see on the comboBox
+    			baseComboBox.getItems().addAll(					// Items of the drop down menu
+    				"Base 2 (Binary)",
+    				"Base 8 (Octal)",
+    				"Base 10 (Decimal)",
+    				"Base 16 (Hex)"    					
+    			);
+    			baseComboBox.prefWidthProperty().bind(mainPane.widthProperty().divide(4)); 		// Sets the preferred width of this menu to be 1/4 the width of the calculator
+    			baseComboBox.prefHeightProperty().bind(mainPane.heightProperty().divide(15));
+    			
+    			menuBox.getChildren().addAll(baseComboBox); 	// Adds the combo box to the menuBox
+    			    			
+    			/* End making base conversion drop down menu */
+    			
+    			
     			 num0.setOnMouseClicked(e->{
     		    	 String x="0";
     		    	 exp+=x;
@@ -803,7 +829,7 @@ exp.charAt(i)=='%'||exp.charAt(i)=='/')&&i!=0)
          // textField.disabledProperty();
 
 
-    			mainPane.getChildren().addAll(textField,hb,hBox1,hBox2,hBox3,hBox4);
+    			mainPane.getChildren().addAll(menuBox,textField,hb,hBox1,hBox2,hBox3,hBox4);
     	        Scene scene=new Scene(mainPane,410,500);
     			primaryStage.setTitle("Calculator");
     		/*
@@ -825,6 +851,8 @@ exp.charAt(i)=='%'||exp.charAt(i)=='/')&&i!=0)
     		        primaryStage.show();
     		}
     		
+    		
+    	    		
     		public static void main(String[] args) {
     	       Application.launch(args);
 
