@@ -852,11 +852,7 @@ exp.charAt(i)=='%'||exp.charAt(i)=='/')&&i!=0)
     		}
     		
     		
-    		public static void doBaseConversion(String whichBase)
-    		{
-    			
-    		}
-    		
+    	    		
     		public static void main(String[] args) {
     	       Application.launch(args);
 
