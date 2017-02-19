@@ -30,36 +30,8 @@ public class Cal extends Application {
     			mainPane.prefWidthProperty().bind(primaryStage.widthProperty());
     			mainPane.setStyle("-fx-background-color: #000000;");
     			
-    			Button imp=new Button("improve");
-    			imp.prefWidthProperty().bind(mainPane.widthProperty().divide(2));
-    			imp.prefHeightProperty().bind(mainPane.heightProperty().divide(15));
-    			imp.setFont(Font.font("Times New Roman",
-    					 FontWeight.BOLD, FontPosture.ITALIC, 12));
-    			imp.styleProperty().bind(
-    				      Bindings
-    				        .when(imp.hoverProperty())
-    				          .then(
-    				            new SimpleStringProperty("-fx-color: gray;")
-    				          )
-    				          .otherwise(
-    				            new SimpleStringProperty("-fx-color: white;")
-    				          ));
-    			Button approx=new Button("approximate");
-    			approx.prefWidthProperty().bind(mainPane.widthProperty().divide(2));
-    			approx.prefHeightProperty().bind(mainPane.heightProperty().divide(15));
-    			approx.setFont(Font.font("Times New Roman",
-    					 FontWeight.BOLD, FontPosture.ITALIC, 12));
-    			approx.styleProperty().bind(
-    				      Bindings
-    				        .when(approx.hoverProperty())
-    				          .then(
-    				            new SimpleStringProperty("-fx-color: gray;")
-    				          )
-    				          .otherwise(
-    				            new SimpleStringProperty("-fx-color: white;")
-    				          ));
     			HBox hb=new HBox(10);
-    			hb.getChildren().addAll(imp,approx);
+    			hb.getChildren().addAll();            // Can add buttons here. This is the Hbox below the text box and above the numpad buttons. hb.getChildren().addAll(your, buttons, go, here);
     			
     			
     			TextField textField=new TextField();
@@ -708,25 +680,6 @@ if(x2==false){
     			   
     			   
     		   });
-    		 approx.setOnMouseClicked(e->{
-    			 try{
-    			 //int X=Integer.parseInt(textField.toString());
-    		double result2 = Double.parseDouble(exp);
-    			  double  result = Math.round(result2);
-    			  int YY=(int)result;
-    			 String XX=Integer.toString(YY);
-    			 exp=XX;
-    			 textField.setText(exp);
-    			   res=true;
-
-   	    		 x2=false;
-    			 }
-    			 catch(NumberFormatException t)
-    			 {}
-    			 
-    			 
-    			 
-    		 });
     		   backSpace.setOnMouseClicked(e->{
     			   try{
     				 int i=1;
@@ -794,29 +747,6 @@ exp.charAt(i)=='%'||exp.charAt(i)=='/')&&i!=0)
 
 
     		   });
-    	  imp.setOnMouseClicked(e->
-    	  {
-    		  try{
-    		 	Double toBeTruncated = new Double(exp);
-              	Double truncatedDouble = new BigDecimal(toBeTruncated)
-    		   	    .setScale(2, BigDecimal.ROUND_HALF_UP)
-    		   	    .doubleValue();
-    		   	exp=Double.toString(truncatedDouble);
-    		  textField.setText(exp);
-    		  }
-    		  catch(NullPointerException ee){ 
-    			  exp="Erorr Expression"; 
-    		  textField.setText(exp);
-    		  exp="";
-              }
-    		  catch(NumberFormatException ee){ 
-    			  exp="Erorr Expression"; 
-    		  textField.setText(exp);
-    		  exp="";
-
-              }
-    		  
-    	  });
     	  sqrt.setOnMouseClicked(e->
     	  {
     			  exp+="S"+"(";
