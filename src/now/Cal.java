@@ -411,16 +411,23 @@ public class Cal extends Application {
     			hBox4.prefWidthProperty().bind(primaryStage.widthProperty());
     			hBox4.getChildren().addAll(dot,num0,mod,sum,equal);
     			
+
     			/* Make Horizontal box to contain menus. (This is the HBox you want to use if you want to add more menus at the top). 
     			 * Usage is: menuBox.getChildren().addAll(your, items, go, here); */
-    			
-    	        HBox menuBox = new HBox();
+    	        HBox settingsBox = new HBox();
+    	        settingsBox.setAlignment(Pos.CENTER);
+
+    	        // Make settings drop down menu
+    			ComboBox<String> settingsComboBox = new ComboBox<String>();
+    			settingsComboBox.setValue("Basic Mode");			// This is the text you see on the comboBox
+    			settingsComboBox.getItems().addAll(					// Items of the drop down menu
+    				"Basic Mode",
+    				"Advanced Mode",
+    				"Programming Mode",
+    				"Graphing Mode"    					
+    			);
     	        
-    			/* End making menuBox */
-    			
-    			
-    			/* Make base conversion drop down menu*/
-    			
+    			// Make base conversion drop down menu
     			ComboBox<String> baseComboBox = new ComboBox<String>();
     			baseComboBox.setValue("Bases");					// This is the text you see on the comboBox
     			baseComboBox.getItems().addAll(					// Items of the drop down menu
@@ -431,10 +438,7 @@ public class Cal extends Application {
     			);
     			baseComboBox.prefWidthProperty().bind(mainPane.widthProperty().divide(4)); 		// Sets the preferred width of this menu to be 1/4 the width of the calculator
     			baseComboBox.prefHeightProperty().bind(mainPane.heightProperty().divide(15));
-    			
-    			menuBox.getChildren().addAll(baseComboBox); 	// Adds the combo box to the menuBox
-    			    			
-    			/* End making base conversion drop down menu */
+    			settingsBox.getChildren().addAll(settingsComboBox); 							// Adds the combo box to the menuBox
     			
     			
     			 num0.setOnMouseClicked(e->{
@@ -829,7 +833,7 @@ exp.charAt(i)=='%'||exp.charAt(i)=='/')&&i!=0)
          // textField.disabledProperty();
 
 
-    			mainPane.getChildren().addAll(menuBox,textField,hb,hBox1,hBox2,hBox3,hBox4);
+    			mainPane.getChildren().addAll(settingsBox,textField,hb,hBox1,hBox2,hBox3,hBox4);
     	        Scene scene=new Scene(mainPane,410,500);
     			primaryStage.setTitle("Calculator");
     		/*
