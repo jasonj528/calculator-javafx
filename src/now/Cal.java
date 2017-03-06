@@ -623,6 +623,11 @@ public class Cal extends Application {
     	    	 }
 
     	     });
+
+    	     graph.setOnMouseClicked(e->{
+    	     	// To be completed
+			 });
+
     	     dot.setOnMouseClicked(e->{
     	    
 
