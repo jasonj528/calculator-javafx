@@ -33,8 +33,8 @@ public class Cal extends Application {
     			Button imp=new Button("improve");
     			imp.prefWidthProperty().bind(mainPane.widthProperty().divide(2));
     			imp.prefHeightProperty().bind(mainPane.heightProperty().divide(15));
-    			imp.setFont(Font.font("Times New Roman",
-    					 FontWeight.BOLD, FontPosture.ITALIC, 12));
+    			imp.setFont(Font.font("SansSerif",
+    					 FontWeight.BOLD, 14));
     			imp.styleProperty().bind(
     				      Bindings
     				        .when(imp.hoverProperty())
@@ -47,8 +47,8 @@ public class Cal extends Application {
     			Button approx=new Button("approximate");
     			approx.prefWidthProperty().bind(mainPane.widthProperty().divide(2));
     			approx.prefHeightProperty().bind(mainPane.heightProperty().divide(15));
-    			approx.setFont(Font.font("Times New Roman",
-    					 FontWeight.BOLD, FontPosture.ITALIC, 12));
+    			approx.setFont(Font.font("SansSerif",
+    					 FontWeight.BOLD, 14));
     			approx.styleProperty().bind(
     				      Bindings
     				        .when(approx.hoverProperty())
@@ -73,8 +73,8 @@ public class Cal extends Application {
     			Button num9=new Button("9");
     			num9.prefHeightProperty().bind(mainPane.heightProperty().divide(5));
     			num9.prefWidthProperty().bind(mainPane.widthProperty().divide(6));
-    			num9.setFont(Font.font("Times New Roman",
-    					 FontWeight.BOLD, FontPosture.ITALIC, 12));
+    			num9.setFont(Font.font("SansSerif",
+    					 FontWeight.BOLD, 14));
     			num9.styleProperty().bind(
     				      Bindings
     				        .when(num9.hoverProperty())
@@ -87,8 +87,8 @@ public class Cal extends Application {
     			Button num8=new Button("8");
     			num8.prefHeightProperty().bind(mainPane.heightProperty().divide(5));
     			num8.prefWidthProperty().bind(mainPane.widthProperty().divide(6));
-    			num8.setFont(Font.font("Times New Roman",
-    					 FontWeight.BOLD, FontPosture.ITALIC, 12));
+    			num8.setFont(Font.font("SansSerif",
+    					 FontWeight.BOLD, 14));
     			num8.styleProperty().bind(
     				      Bindings
     				        .when(num8.hoverProperty())
@@ -101,8 +101,8 @@ public class Cal extends Application {
     			Button num7=new Button("7");
     			num7.prefHeightProperty().bind(mainPane.heightProperty().divide(5));
     			num7.prefWidthProperty().bind(mainPane.widthProperty().divide(6));
-    			num7.setFont(Font.font("Times New Roman",
-    					 FontWeight.BOLD, FontPosture.ITALIC, 12));
+    			num7.setFont(Font.font("SansSerif",
+    					 FontWeight.BOLD, 14));
     			num7.styleProperty().bind(
     				      Bindings
     				        .when(num7.hoverProperty())
@@ -115,8 +115,8 @@ public class Cal extends Application {
     			Button div=new Button("/");
     			div.prefHeightProperty().bind(mainPane.heightProperty().divide(5));
     			div.prefWidthProperty().bind(mainPane.widthProperty().divide(6));
-    			div.setFont(Font.font("Times New Roman",
-    					 FontWeight.BOLD, FontPosture.ITALIC, 12));
+    			div.setFont(Font.font("SansSerif",
+    					 FontWeight.BOLD, 14));
     			div.styleProperty().bind(
     				      Bindings
     				        .when(div.hoverProperty())
@@ -129,8 +129,8 @@ public class Cal extends Application {
     			Button num6=new Button("6");
     			num6.prefHeightProperty().bind(mainPane.heightProperty().divide(5));
     			num6.prefWidthProperty().bind(mainPane.widthProperty().divide(6));
-    			num6.setFont(Font.font("Times New Roman",
-    					 FontWeight.BOLD, FontPosture.ITALIC, 12));
+    			num6.setFont(Font.font("SansSerif",
+    					 FontWeight.BOLD, 14));
     			num6.styleProperty().bind(
     				      Bindings
     				        .when(num6.hoverProperty())
@@ -143,8 +143,8 @@ public class Cal extends Application {
     			Button num5=new Button("5");
     			num5.prefHeightProperty().bind(mainPane.heightProperty().divide(5));
     			num5.prefWidthProperty().bind(mainPane.widthProperty().divide(6));
-    			num5.setFont(Font.font("Times New Roman",
-    					 FontWeight.BOLD, FontPosture.ITALIC, 12));
+    			num5.setFont(Font.font("SansSerif",
+    					 FontWeight.BOLD, 14));
     			num5.styleProperty().bind(
     				      Bindings
     				        .when(num5.hoverProperty())
@@ -157,8 +157,8 @@ public class Cal extends Application {
     			Button num4=new Button("4");
     			num4.prefHeightProperty().bind(mainPane.heightProperty().divide(5));
     			num4.prefWidthProperty().bind(mainPane.widthProperty().divide(6));
-    			num4.setFont(Font.font("Times New Roman",
-    					 FontWeight.BOLD, FontPosture.ITALIC, 12));
+    			num4.setFont(Font.font("SansSerif",
+    					 FontWeight.BOLD, 14));
     			num4.styleProperty().bind(
     				      Bindings
     				        .when(num4.hoverProperty())
@@ -171,8 +171,8 @@ public class Cal extends Application {
     			Button mul=new Button("*");
     			mul.prefHeightProperty().bind(mainPane.heightProperty().divide(5));
     			mul.prefWidthProperty().bind(mainPane.widthProperty().divide(6));
-    			mul.setFont(Font.font("Times New Roman",
-    					 FontWeight.BOLD, FontPosture.REGULAR, 12));
+    			mul.setFont(Font.font("SansSerif",
+    					 FontWeight.BOLD, FontPosture.REGULAR, 14));
     			mul.styleProperty().bind(
     				      Bindings
     				        .when(mul.hoverProperty())
@@ -185,8 +185,8 @@ public class Cal extends Application {
     			Button b1=new Button("(");
     			b1.prefHeightProperty().bind(mainPane.heightProperty().divide(5));
     			b1.prefWidthProperty().bind(mainPane.widthProperty().divide(6));
-    			b1.setFont(Font.font("Times New Roman",
-    					 FontWeight.BOLD, FontPosture.ITALIC, 12));
+    			b1.setFont(Font.font("SansSerif",
+    					 FontWeight.BOLD, 14));
     			b1.styleProperty().bind(
     				      Bindings
     				        .when(b1.hoverProperty())
@@ -199,8 +199,8 @@ public class Cal extends Application {
     			Button b2=new Button(")");
     			b2.prefHeightProperty().bind(mainPane.heightProperty().divide(5));
     			b2.prefWidthProperty().bind(mainPane.widthProperty().divide(6));
-    			b2.setFont(Font.font("Times New Roman",
-    					 FontWeight.BOLD, FontPosture.ITALIC, 12));
+    			b2.setFont(Font.font("SansSerif",
+    					 FontWeight.BOLD, 14));
     			b2.styleProperty().bind(
     				      Bindings
     				        .when(b2.hoverProperty())
@@ -213,8 +213,8 @@ public class Cal extends Application {
     			Button backSpace=new Button("\u2190");
     			backSpace.prefHeightProperty().bind(mainPane.heightProperty().divide(5));
     			backSpace.prefWidthProperty().bind(mainPane.widthProperty().divide(6));
-    			backSpace.setFont(Font.font("Times New Roman",
-    					 FontWeight.BOLD, FontPosture.ITALIC, 12));
+    			backSpace.setFont(Font.font("SansSerif",
+    					 FontWeight.BOLD, 14));
     			backSpace.styleProperty().bind(
     				      Bindings
     				        .when(backSpace.hoverProperty())
@@ -227,8 +227,8 @@ public class Cal extends Application {
     			Button home=new Button("\u2302");
     			home.prefHeightProperty().bind(mainPane.heightProperty().divide(5));
     			home.prefWidthProperty().bind(mainPane.widthProperty().divide(6));
-    			home.setFont(Font.font("Times New Roman",
-    					 FontWeight.BOLD, FontPosture.ITALIC, 12));
+    			home.setFont(Font.font("SansSerif",
+    					 FontWeight.BOLD, 14));
     			home.styleProperty().bind(
     				      Bindings
     				        .when(home.hoverProperty())
@@ -241,8 +241,8 @@ public class Cal extends Application {
     			Button num3=new Button("3");
     			num3.prefHeightProperty().bind(mainPane.heightProperty().divide(5));
     			num3.prefWidthProperty().bind(mainPane.widthProperty().divide(6));
-    			num3.setFont(Font.font("Times New Roman",
-    					 FontWeight.BOLD, FontPosture.ITALIC, 12));
+    			num3.setFont(Font.font("SansSerif",
+    					 FontWeight.BOLD, 14));
     			num3.styleProperty().bind(
     				      Bindings
     				        .when(num3.hoverProperty())
@@ -255,8 +255,8 @@ public class Cal extends Application {
     			Button num2=new Button("2");
     			num2.prefHeightProperty().bind(mainPane.heightProperty().divide(5));
     			num2.prefWidthProperty().bind(mainPane.widthProperty().divide(6));
-    			num2.setFont(Font.font("Times New Roman",
-    					 FontWeight.BOLD, FontPosture.ITALIC, 12));
+    			num2.setFont(Font.font("SansSerif",
+    					 FontWeight.BOLD, 14));
     			num2.styleProperty().bind(
     				      Bindings
     				        .when(num2.hoverProperty())
@@ -269,8 +269,8 @@ public class Cal extends Application {
     			Button num1=new Button("1");
     			num1.prefHeightProperty().bind(mainPane.heightProperty().divide(5));
     			num1.prefWidthProperty().bind(mainPane.widthProperty().divide(6));
-    			num1.setFont(Font.font("Times New Roman",
-    					 FontWeight.BOLD, FontPosture.ITALIC, 12));
+    			num1.setFont(Font.font("SansSerif",
+    					 FontWeight.BOLD, 14));
     			num1.styleProperty().bind(
     				      Bindings
     				        .when(num1.hoverProperty())
@@ -283,8 +283,8 @@ public class Cal extends Application {
     			Button sub=new Button("-");
     			sub.prefHeightProperty().bind(mainPane.heightProperty().divide(5));
     			sub.prefWidthProperty().bind(mainPane.widthProperty().divide(6));
-    			sub.setFont(Font.font("Times New Roman",
-    					 FontWeight.BOLD, FontPosture.ITALIC, 12));
+    			sub.setFont(Font.font("SansSerif",
+    					 FontWeight.BOLD, 14));
     			sub.styleProperty().bind(
     				      Bindings
     				        .when(sub.hoverProperty())
@@ -297,8 +297,8 @@ public class Cal extends Application {
     			Button xPower2=new Button("x²");
     			xPower2.prefHeightProperty().bind(mainPane.heightProperty().divide(5));
     			xPower2.prefWidthProperty().bind(mainPane.widthProperty().divide(6));
-    			xPower2.setFont(Font.font("Times New Roman",
-    					 FontWeight.BOLD, FontPosture.ITALIC, 12));
+    			xPower2.setFont(Font.font("SansSerif",
+    					 FontWeight.BOLD, 14));
     			xPower2.styleProperty().bind(
     				      Bindings
     				        .when(xPower2.hoverProperty())
@@ -311,8 +311,8 @@ public class Cal extends Application {
     			Button sqrt=new Button("\u221A");
     			sqrt.prefHeightProperty().bind(mainPane.heightProperty().divide(5));
     			sqrt.prefWidthProperty().bind(mainPane.widthProperty().divide(6));
-    			sqrt.setFont(Font.font("Times New Roman",
-    					 FontWeight.BOLD, FontPosture.ITALIC, 12));
+    			sqrt.setFont(Font.font("SansSerif",
+    					 FontWeight.BOLD, 14));
     			sqrt.styleProperty().bind(
     				      Bindings
     				        .when(sqrt.hoverProperty())
@@ -326,8 +326,8 @@ public class Cal extends Application {
     			num0.prefHeightProperty().bind(mainPane.heightProperty().divide(5));
     			num0.prefWidthProperty().bind(mainPane.widthProperty().divide(6));
     			//num0.setStyle("-fx-line-height: 1.8;");
-    			num0.setFont(Font.font("Times New Roman",
-    					 FontWeight.BOLD, FontPosture.ITALIC, 12));
+    			num0.setFont(Font.font("SansSerif",
+    					 FontWeight.BOLD, 14));
     			num0.styleProperty().bind(
     				      Bindings
     				        .when(num0.hoverProperty())
@@ -340,8 +340,8 @@ public class Cal extends Application {
     			Button dot=new Button(".");
     			dot.prefHeightProperty().bind(mainPane.heightProperty().divide(5));
     			dot.prefWidthProperty().bind(mainPane.widthProperty().divide(6));
-    			dot.setFont(Font.font("Times New Roman",
-    					 FontWeight.BOLD, FontPosture.ITALIC, 12));
+    			dot.setFont(Font.font("SansSerif",
+    					 FontWeight.BOLD, 14));
     			dot.styleProperty().bind(
     				      Bindings
     				        .when(dot.hoverProperty())
@@ -354,8 +354,8 @@ public class Cal extends Application {
     			Button mod=new Button("%");
     			mod.prefHeightProperty().bind(mainPane.heightProperty().divide(5));
     			mod.prefWidthProperty().bind(mainPane.widthProperty().divide(6));
-    			mod.setFont(Font.font("Times New Roman",
-    					 FontWeight.BOLD, FontPosture.ITALIC, 12));
+    			mod.setFont(Font.font("SansSerif",
+    					 FontWeight.BOLD, 14));
     			mod.styleProperty().bind(
     				      Bindings
     				        .when(mod.hoverProperty())
@@ -368,8 +368,8 @@ public class Cal extends Application {
     			Button sum=new Button("+");
     			sum.prefHeightProperty().bind(mainPane.heightProperty().divide(5));
     			sum.prefWidthProperty().bind(mainPane.widthProperty().divide(6));
-    			sum.setFont(Font.font("Times New Roman",
-    					 FontWeight.BOLD, FontPosture.ITALIC, 12));
+    			sum.setFont(Font.font("SansSerif",
+    					 FontWeight.BOLD, 14));
     			sum.styleProperty().bind(
     				      Bindings
     				        .when(sum.hoverProperty())
@@ -382,8 +382,8 @@ public class Cal extends Application {
     			Button equal=new Button("=");
     			equal.prefHeightProperty().bind(mainPane.heightProperty().divide(5));
     			equal.prefWidthProperty().bind(mainPane.widthProperty().divide(3));
-    			equal.setFont(Font.font("Times New Roman",
-    					 FontWeight.BOLD, FontPosture.ITALIC, 12));
+    			equal.setFont(Font.font("SansSerif",
+    					 FontWeight.BOLD, 14));
     			equal.styleProperty().bind(
     				      Bindings
     				        .when(equal.hoverProperty())
