@@ -379,9 +379,25 @@ public class Cal extends Application {
         				          .otherwise(
         				            new SimpleStringProperty("-fx-color: #2e2e2e;")
         				          ));
+
+    			Button graph = new Button("Graph");
+				graph.prefHeightProperty().bind(mainPane.heightProperty().divide(5));
+				graph.prefWidthProperty().bind(mainPane.widthProperty().divide(6));
+				graph.setFont(Font.font("SansSerif",
+						FontWeight.BOLD, 14));
+				graph.styleProperty().bind(
+						Bindings
+								.when(graph.hoverProperty())
+								.then(
+										new SimpleStringProperty("-fx-color: #f4a54d;")
+								)
+								.otherwise(
+										new SimpleStringProperty("-fx-color: #b96501;")
+								));
+
     			Button equal=new Button("=");
     			equal.prefHeightProperty().bind(mainPane.heightProperty().divide(5));
-    			equal.prefWidthProperty().bind(mainPane.widthProperty().divide(3));
+    			equal.prefWidthProperty().bind(mainPane.widthProperty().divide(6));
     			equal.setFont(Font.font("Times New Roman",
     					 FontWeight.BOLD, FontPosture.ITALIC, 12));
     			equal.styleProperty().bind(
@@ -409,7 +425,7 @@ public class Cal extends Application {
     			HBox hBox4=new HBox(5);
     			hBox4.prefHeightProperty().bind(primaryStage.heightProperty().divide(4));
     			hBox4.prefWidthProperty().bind(primaryStage.widthProperty());
-    			hBox4.getChildren().addAll(dot,num0,mod,sum,equal);
+    			hBox4.getChildren().addAll(dot,num0,mod,sum,graph,equal);
     			
     			/* Make Horizontal box to contain menus. (This is the HBox you want to use if you want to add more menus at the top). 
     			 * Usage is: menuBox.getChildren().addAll(your, items, go, here); */
