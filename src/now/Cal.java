@@ -395,19 +395,19 @@ public class Cal extends Application {
     			HBox hBox1=new HBox(5);
     			hBox1.prefHeightProperty().bind(primaryStage.heightProperty().divide(4));
     			hBox1.prefWidthProperty().bind(primaryStage.widthProperty());
-    			hBox1.getChildren().addAll(num9,num8,num7,div,backSpace,home);
+    			hBox1.getChildren().addAll(num7,num8,num9,div,backSpace,home);
     			HBox hBox2=new HBox(5);
     			hBox2.prefHeightProperty().bind(primaryStage.heightProperty().divide(4));
     			hBox2.prefWidthProperty().bind(primaryStage.widthProperty());
-    			hBox2.getChildren().addAll(num6,num5,num4,mul,b1,b2);
+    			hBox2.getChildren().addAll(num4,num5,num6,mul,b1,b2);
     			HBox hBox3=new HBox(5);
     			hBox3.prefHeightProperty().bind(primaryStage.heightProperty().divide(4));
     			hBox3.prefWidthProperty().bind(primaryStage.widthProperty());
-    			hBox3.getChildren().addAll(num3,num2,num1,sub,xPower2,sqrt);
+    			hBox3.getChildren().addAll(num1,num2,num3,sub,xPower2,sqrt);
     			HBox hBox4=new HBox(5);
     			hBox4.prefHeightProperty().bind(primaryStage.heightProperty().divide(4));
     			hBox4.prefWidthProperty().bind(primaryStage.widthProperty());
-    			hBox4.getChildren().addAll(dot,num0,mod,sum,graph,equal);
+    			hBox4.getChildren().addAll(num0,dot,mod,sum,graph,equal);
     			
 
     			/* Make Horizontal box to contain menus. (This is the HBox you want to use if you want to add more menus at the top). 
