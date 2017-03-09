@@ -2,12 +2,18 @@ package now;
 
 
 import java.math.BigDecimal;
+import java.util.ArrayList;
+
 import javafx.application.Application;
 import javafx.beans.binding.Bindings;
 import javafx.beans.property.SimpleStringProperty;
 import javafx.stage.Stage;
+import javafx.scene.Group;
 import javafx.scene.Scene;
+import javafx.scene.canvas.Canvas;
+import javafx.scene.canvas.GraphicsContext;
 import javafx.scene.layout.VBox;
+import javafx.scene.paint.Color;
 import javafx.scene.control.Button;
 import javafx.scene.control.ComboBox;
 import javafx.scene.control.TextField;
@@ -16,6 +22,10 @@ import javafx.geometry.Insets;
 import javafx.geometry.Pos;
 import javafx.scene.text.*;
 public class Cal extends Application {
+	public static final int HEIGHT = 600;
+	public static final int WIDTH = 600;
+	public static final double XSCL = .01;
+	public static final double YSCL = .01;
 	
 	boolean x2= false;
 	
@@ -45,8 +55,8 @@ public class Cal extends Application {
     			Button num9=new Button("9");
     			num9.prefHeightProperty().bind(mainPane.heightProperty().divide(5));
     			num9.prefWidthProperty().bind(mainPane.widthProperty().divide(6));
-    			num9.setFont(Font.font("Times New Roman",
-    					 FontWeight.BOLD, FontPosture.ITALIC, 12));
+    			num9.setFont(Font.font("SansSerif",
+    					 FontWeight.BOLD, 14));
     			num9.styleProperty().bind(
     				      Bindings
     				        .when(num9.hoverProperty())
@@ -59,8 +69,8 @@ public class Cal extends Application {
     			Button num8=new Button("8");
     			num8.prefHeightProperty().bind(mainPane.heightProperty().divide(5));
     			num8.prefWidthProperty().bind(mainPane.widthProperty().divide(6));
-    			num8.setFont(Font.font("Times New Roman",
-    					 FontWeight.BOLD, FontPosture.ITALIC, 12));
+    			num8.setFont(Font.font("SansSerif",
+    					 FontWeight.BOLD, 14));
     			num8.styleProperty().bind(
     				      Bindings
     				        .when(num8.hoverProperty())
@@ -73,8 +83,8 @@ public class Cal extends Application {
     			Button num7=new Button("7");
     			num7.prefHeightProperty().bind(mainPane.heightProperty().divide(5));
     			num7.prefWidthProperty().bind(mainPane.widthProperty().divide(6));
-    			num7.setFont(Font.font("Times New Roman",
-    					 FontWeight.BOLD, FontPosture.ITALIC, 12));
+    			num7.setFont(Font.font("SansSerif",
+    					 FontWeight.BOLD, 14));
     			num7.styleProperty().bind(
     				      Bindings
     				        .when(num7.hoverProperty())
@@ -87,8 +97,8 @@ public class Cal extends Application {
     			Button div=new Button("/");
     			div.prefHeightProperty().bind(mainPane.heightProperty().divide(5));
     			div.prefWidthProperty().bind(mainPane.widthProperty().divide(6));
-    			div.setFont(Font.font("Times New Roman",
-    					 FontWeight.BOLD, FontPosture.ITALIC, 12));
+    			div.setFont(Font.font("SansSerif",
+    					 FontWeight.BOLD, 14));
     			div.styleProperty().bind(
     				      Bindings
     				        .when(div.hoverProperty())
@@ -101,8 +111,8 @@ public class Cal extends Application {
     			Button num6=new Button("6");
     			num6.prefHeightProperty().bind(mainPane.heightProperty().divide(5));
     			num6.prefWidthProperty().bind(mainPane.widthProperty().divide(6));
-    			num6.setFont(Font.font("Times New Roman",
-    					 FontWeight.BOLD, FontPosture.ITALIC, 12));
+    			num6.setFont(Font.font("SansSerif",
+    					 FontWeight.BOLD, 14));
     			num6.styleProperty().bind(
     				      Bindings
     				        .when(num6.hoverProperty())
@@ -115,8 +125,8 @@ public class Cal extends Application {
     			Button num5=new Button("5");
     			num5.prefHeightProperty().bind(mainPane.heightProperty().divide(5));
     			num5.prefWidthProperty().bind(mainPane.widthProperty().divide(6));
-    			num5.setFont(Font.font("Times New Roman",
-    					 FontWeight.BOLD, FontPosture.ITALIC, 12));
+    			num5.setFont(Font.font("SansSerif",
+    					 FontWeight.BOLD, 14));
     			num5.styleProperty().bind(
     				      Bindings
     				        .when(num5.hoverProperty())
@@ -129,8 +139,8 @@ public class Cal extends Application {
     			Button num4=new Button("4");
     			num4.prefHeightProperty().bind(mainPane.heightProperty().divide(5));
     			num4.prefWidthProperty().bind(mainPane.widthProperty().divide(6));
-    			num4.setFont(Font.font("Times New Roman",
-    					 FontWeight.BOLD, FontPosture.ITALIC, 12));
+    			num4.setFont(Font.font("SansSerif",
+    					 FontWeight.BOLD, 14));
     			num4.styleProperty().bind(
     				      Bindings
     				        .when(num4.hoverProperty())
@@ -143,8 +153,8 @@ public class Cal extends Application {
     			Button mul=new Button("*");
     			mul.prefHeightProperty().bind(mainPane.heightProperty().divide(5));
     			mul.prefWidthProperty().bind(mainPane.widthProperty().divide(6));
-    			mul.setFont(Font.font("Times New Roman",
-    					 FontWeight.BOLD, FontPosture.REGULAR, 12));
+    			mul.setFont(Font.font("SansSerif",
+    					 FontWeight.BOLD, FontPosture.REGULAR, 14));
     			mul.styleProperty().bind(
     				      Bindings
     				        .when(mul.hoverProperty())
@@ -157,8 +167,8 @@ public class Cal extends Application {
     			Button b1=new Button("(");
     			b1.prefHeightProperty().bind(mainPane.heightProperty().divide(5));
     			b1.prefWidthProperty().bind(mainPane.widthProperty().divide(6));
-    			b1.setFont(Font.font("Times New Roman",
-    					 FontWeight.BOLD, FontPosture.ITALIC, 12));
+    			b1.setFont(Font.font("SansSerif",
+    					 FontWeight.BOLD, 14));
     			b1.styleProperty().bind(
     				      Bindings
     				        .when(b1.hoverProperty())
@@ -171,8 +181,8 @@ public class Cal extends Application {
     			Button b2=new Button(")");
     			b2.prefHeightProperty().bind(mainPane.heightProperty().divide(5));
     			b2.prefWidthProperty().bind(mainPane.widthProperty().divide(6));
-    			b2.setFont(Font.font("Times New Roman",
-    					 FontWeight.BOLD, FontPosture.ITALIC, 12));
+    			b2.setFont(Font.font("SansSerif",
+    					 FontWeight.BOLD, 14));
     			b2.styleProperty().bind(
     				      Bindings
     				        .when(b2.hoverProperty())
@@ -185,8 +195,8 @@ public class Cal extends Application {
     			Button backSpace=new Button("\u2190");
     			backSpace.prefHeightProperty().bind(mainPane.heightProperty().divide(5));
     			backSpace.prefWidthProperty().bind(mainPane.widthProperty().divide(6));
-    			backSpace.setFont(Font.font("Times New Roman",
-    					 FontWeight.BOLD, FontPosture.ITALIC, 12));
+    			backSpace.setFont(Font.font("SansSerif",
+    					 FontWeight.BOLD, 14));
     			backSpace.styleProperty().bind(
     				      Bindings
     				        .when(backSpace.hoverProperty())
@@ -199,8 +209,8 @@ public class Cal extends Application {
     			Button home=new Button("\u2302");
     			home.prefHeightProperty().bind(mainPane.heightProperty().divide(5));
     			home.prefWidthProperty().bind(mainPane.widthProperty().divide(6));
-    			home.setFont(Font.font("Times New Roman",
-    					 FontWeight.BOLD, FontPosture.ITALIC, 12));
+    			home.setFont(Font.font("SansSerif",
+    					 FontWeight.BOLD, 14));
     			home.styleProperty().bind(
     				      Bindings
     				        .when(home.hoverProperty())
@@ -213,8 +223,8 @@ public class Cal extends Application {
     			Button num3=new Button("3");
     			num3.prefHeightProperty().bind(mainPane.heightProperty().divide(5));
     			num3.prefWidthProperty().bind(mainPane.widthProperty().divide(6));
-    			num3.setFont(Font.font("Times New Roman",
-    					 FontWeight.BOLD, FontPosture.ITALIC, 12));
+    			num3.setFont(Font.font("SansSerif",
+    					 FontWeight.BOLD, 14));
     			num3.styleProperty().bind(
     				      Bindings
     				        .when(num3.hoverProperty())
@@ -227,8 +237,8 @@ public class Cal extends Application {
     			Button num2=new Button("2");
     			num2.prefHeightProperty().bind(mainPane.heightProperty().divide(5));
     			num2.prefWidthProperty().bind(mainPane.widthProperty().divide(6));
-    			num2.setFont(Font.font("Times New Roman",
-    					 FontWeight.BOLD, FontPosture.ITALIC, 12));
+    			num2.setFont(Font.font("SansSerif",
+    					 FontWeight.BOLD, 14));
     			num2.styleProperty().bind(
     				      Bindings
     				        .when(num2.hoverProperty())
@@ -241,8 +251,8 @@ public class Cal extends Application {
     			Button num1=new Button("1");
     			num1.prefHeightProperty().bind(mainPane.heightProperty().divide(5));
     			num1.prefWidthProperty().bind(mainPane.widthProperty().divide(6));
-    			num1.setFont(Font.font("Times New Roman",
-    					 FontWeight.BOLD, FontPosture.ITALIC, 12));
+    			num1.setFont(Font.font("SansSerif",
+    					 FontWeight.BOLD, 14));
     			num1.styleProperty().bind(
     				      Bindings
     				        .when(num1.hoverProperty())
@@ -255,8 +265,8 @@ public class Cal extends Application {
     			Button sub=new Button("-");
     			sub.prefHeightProperty().bind(mainPane.heightProperty().divide(5));
     			sub.prefWidthProperty().bind(mainPane.widthProperty().divide(6));
-    			sub.setFont(Font.font("Times New Roman",
-    					 FontWeight.BOLD, FontPosture.ITALIC, 12));
+    			sub.setFont(Font.font("SansSerif",
+    					 FontWeight.BOLD, 14));
     			sub.styleProperty().bind(
     				      Bindings
     				        .when(sub.hoverProperty())
@@ -269,8 +279,8 @@ public class Cal extends Application {
     			Button xPower2=new Button("x²");
     			xPower2.prefHeightProperty().bind(mainPane.heightProperty().divide(5));
     			xPower2.prefWidthProperty().bind(mainPane.widthProperty().divide(6));
-    			xPower2.setFont(Font.font("Times New Roman",
-    					 FontWeight.BOLD, FontPosture.ITALIC, 12));
+    			xPower2.setFont(Font.font("SansSerif",
+    					 FontWeight.BOLD, 14));
     			xPower2.styleProperty().bind(
     				      Bindings
     				        .when(xPower2.hoverProperty())
@@ -283,8 +293,8 @@ public class Cal extends Application {
     			Button sqrt=new Button("\u221A");
     			sqrt.prefHeightProperty().bind(mainPane.heightProperty().divide(5));
     			sqrt.prefWidthProperty().bind(mainPane.widthProperty().divide(6));
-    			sqrt.setFont(Font.font("Times New Roman",
-    					 FontWeight.BOLD, FontPosture.ITALIC, 12));
+    			sqrt.setFont(Font.font("SansSerif",
+    					 FontWeight.BOLD, 14));
     			sqrt.styleProperty().bind(
     				      Bindings
     				        .when(sqrt.hoverProperty())
@@ -298,8 +308,8 @@ public class Cal extends Application {
     			num0.prefHeightProperty().bind(mainPane.heightProperty().divide(5));
     			num0.prefWidthProperty().bind(mainPane.widthProperty().divide(6));
     			//num0.setStyle("-fx-line-height: 1.8;");
-    			num0.setFont(Font.font("Times New Roman",
-    					 FontWeight.BOLD, FontPosture.ITALIC, 12));
+    			num0.setFont(Font.font("SansSerif",
+    					 FontWeight.BOLD, 14));
     			num0.styleProperty().bind(
     				      Bindings
     				        .when(num0.hoverProperty())
@@ -312,8 +322,8 @@ public class Cal extends Application {
     			Button dot=new Button(".");
     			dot.prefHeightProperty().bind(mainPane.heightProperty().divide(5));
     			dot.prefWidthProperty().bind(mainPane.widthProperty().divide(6));
-    			dot.setFont(Font.font("Times New Roman",
-    					 FontWeight.BOLD, FontPosture.ITALIC, 12));
+    			dot.setFont(Font.font("SansSerif",
+    					 FontWeight.BOLD, 14));
     			dot.styleProperty().bind(
     				      Bindings
     				        .when(dot.hoverProperty())
@@ -326,8 +336,8 @@ public class Cal extends Application {
     			Button mod=new Button("%");
     			mod.prefHeightProperty().bind(mainPane.heightProperty().divide(5));
     			mod.prefWidthProperty().bind(mainPane.widthProperty().divide(6));
-    			mod.setFont(Font.font("Times New Roman",
-    					 FontWeight.BOLD, FontPosture.ITALIC, 12));
+    			mod.setFont(Font.font("SansSerif",
+    					 FontWeight.BOLD, 14));
     			mod.styleProperty().bind(
     				      Bindings
     				        .when(mod.hoverProperty())
@@ -340,8 +350,8 @@ public class Cal extends Application {
     			Button sum=new Button("+");
     			sum.prefHeightProperty().bind(mainPane.heightProperty().divide(5));
     			sum.prefWidthProperty().bind(mainPane.widthProperty().divide(6));
-    			sum.setFont(Font.font("Times New Roman",
-    					 FontWeight.BOLD, FontPosture.ITALIC, 12));
+    			sum.setFont(Font.font("SansSerif",
+    					 FontWeight.BOLD, 14));
     			sum.styleProperty().bind(
     				      Bindings
     				        .when(sum.hoverProperty())
@@ -351,11 +361,27 @@ public class Cal extends Application {
         				          .otherwise(
         				            new SimpleStringProperty("-fx-color: #2e2e2e;")
         				          ));
+
+    			Button graph = new Button("Graph");
+				graph.prefHeightProperty().bind(mainPane.heightProperty().divide(5));
+				graph.prefWidthProperty().bind(mainPane.widthProperty().divide(6));
+				graph.setFont(Font.font("SansSerif",
+						FontWeight.BOLD, 14));
+				graph.styleProperty().bind(
+						Bindings
+								.when(graph.hoverProperty())
+								.then(
+										new SimpleStringProperty("-fx-color: #f4a54d;")
+								)
+								.otherwise(
+										new SimpleStringProperty("-fx-color: #b96501;")
+								));
+
     			Button equal=new Button("=");
     			equal.prefHeightProperty().bind(mainPane.heightProperty().divide(5));
     			equal.prefWidthProperty().bind(mainPane.widthProperty().divide(3));
-    			equal.setFont(Font.font("Times New Roman",
-    					 FontWeight.BOLD, FontPosture.ITALIC, 12));
+    			equal.setFont(Font.font("SansSerif",
+    					 FontWeight.BOLD, 14));
     			equal.styleProperty().bind(
     				      Bindings
     				        .when(equal.hoverProperty())
@@ -381,18 +407,25 @@ public class Cal extends Application {
     			HBox hBox4=new HBox(5);
     			hBox4.prefHeightProperty().bind(primaryStage.heightProperty().divide(4));
     			hBox4.prefWidthProperty().bind(primaryStage.widthProperty());
-    			hBox4.getChildren().addAll(dot,num0,mod,sum,equal);
+    			hBox4.getChildren().addAll(dot,num0,mod,sum,graph,equal);
     			
+
     			/* Make Horizontal box to contain menus. (This is the HBox you want to use if you want to add more menus at the top). 
     			 * Usage is: menuBox.getChildren().addAll(your, items, go, here); */
-    			
-    	        HBox menuBox = new HBox();
+    	        HBox settingsBox = new HBox();
+    	        settingsBox.setAlignment(Pos.CENTER);
+
+    	        // Make settings drop down menu
+    			ComboBox<String> settingsComboBox = new ComboBox<String>();
+    			settingsComboBox.setValue("Basic Mode");			// This is the text you see on the comboBox
+    			settingsComboBox.getItems().addAll(					// Items of the drop down menu
+    				"Basic Mode",
+    				"Advanced Mode",
+    				"Programming Mode",
+    				"Graphing Mode"    					
+    			);
     	        
-    			/* End making menuBox */
-    			
-    			
-    			/* Make base conversion drop down menu*/
-    			
+    			// Make base conversion drop down menu
     			ComboBox<String> baseComboBox = new ComboBox<String>();
     			baseComboBox.setValue("Bases");					// This is the text you see on the comboBox
     			baseComboBox.getItems().addAll(					// Items of the drop down menu
@@ -403,10 +436,7 @@ public class Cal extends Application {
     			);
     			baseComboBox.prefWidthProperty().bind(mainPane.widthProperty().divide(4)); 		// Sets the preferred width of this menu to be 1/4 the width of the calculator
     			baseComboBox.prefHeightProperty().bind(mainPane.heightProperty().divide(15));
-    			
-    			menuBox.getChildren().addAll(baseComboBox); 	// Adds the combo box to the menuBox
-    			    			
-    			/* End making base conversion drop down menu */
+    			settingsBox.getChildren().addAll(settingsComboBox); 							// Adds the combo box to the menuBox
     			
     			
     			 num0.setOnMouseClicked(e->{
@@ -579,6 +609,24 @@ public class Cal extends Application {
     	    	 }
 
     	     });
+
+    	     graph.setOnMouseClicked(e->{
+    	    	 Stage graphingStage = new Stage();
+    	    	 graphingStage.setTitle("Graphing calc test");
+    	 		Group root = new Group();
+    	 		Canvas canvas = new Canvas(HEIGHT, WIDTH);
+    	 		//set up graphics context for drawing
+    	 		GraphicsContext gc = canvas.getGraphicsContext2D();
+    	 		//plot points
+    	 		drawGraph(gc);
+    	 		//add canvas to scene
+    	 		root.getChildren().add(canvas);
+    	 		graphingStage.setScene(new Scene(root));
+    	 		//show scene
+    	 		graphingStage.show();
+
+    	         });
+
     	     dot.setOnMouseClicked(e->{
     	    
 
@@ -759,7 +807,7 @@ exp.charAt(i)=='%'||exp.charAt(i)=='/')&&i!=0)
          // textField.disabledProperty();
 
 
-    			mainPane.getChildren().addAll(menuBox,textField,hb,hBox1,hBox2,hBox3,hBox4);
+    			mainPane.getChildren().addAll(settingsBox,textField,hb,hBox1,hBox2,hBox3,hBox4);
     	        Scene scene=new Scene(mainPane,410,500);
     			primaryStage.setTitle("Calculator");
     		/*
@@ -779,6 +827,46 @@ exp.charAt(i)=='%'||exp.charAt(i)=='/')&&i!=0)
     				primaryStage.setResizable(false);
 
     		        primaryStage.show();
+    		}
+    		
+    		//method to draw graph based on user equation
+    		public void drawGraph(GraphicsContext gc) {
+    			
+    			//get points to be graphed
+    			//TODO: function should receive equation string, pass to getPoints and parse from there
+    			ArrayList<Vector> points = getPoints();
+    			//translate origin to (0,0)
+    			gc.translate(WIDTH/2, HEIGHT/2);
+    			gc.setStroke(Color.BLACK);
+    			gc.setLineWidth(1);
+    			//draw x and y axes
+    			gc.strokeLine(-WIDTH / 2, 0, WIDTH / 2, 0);
+    			gc.strokeLine(0, -HEIGHT / 2, 0, HEIGHT / 2);
+    			//plot points from user equation
+    			for (int i = 1; i < points.size(); i++) {
+    				gc.strokeLine(points.get(i).getX(), points.get(i).getY(), points.get(i-1).getX(), points.get(i-1).getY());
+    			}
+    		}
+    		
+    		//method to return list of points to be plotted
+    		//NOTE: The entire equation must be multiplied by -1 when obtaining y values, 
+    		//the graphics in javafx invert the y axis (lower y coordinates higher) for whatever reason
+    		public ArrayList<Vector> getPoints() {
+    			
+    			double y = 0;
+    			ArrayList<Vector> pts = new ArrayList<Vector>();
+    			
+    			//loop from xmin to xmax, calculate y for each x
+    			for (double x = -WIDTH/2; x <= WIDTH/2; x += XSCL) {
+    				
+    				//test case, parabola
+    				y = -(Math.pow(x, 3));
+    				//test case, x^3
+    				//y= -(Math.pow(x, 3));
+    				//create vector object, add to array
+    				pts.add(new Vector(x / XSCL, y / YSCL));
+    			}
+    			return pts;
     		}
     		
     		
