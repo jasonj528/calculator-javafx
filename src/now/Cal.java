@@ -22,6 +22,7 @@ import javafx.geometry.Insets;
 import javafx.geometry.Pos;
 import javafx.scene.text.*;
 public class Cal extends Application {
+	
 	public static final int HEIGHT = 600;
 	public static final int WIDTH = 600;
 	public static final double XSCL = .01;
@@ -379,7 +380,7 @@ public class Cal extends Application {
 
     			Button equal=new Button("=");
     			equal.prefHeightProperty().bind(mainPane.heightProperty().divide(5));
-    			equal.prefWidthProperty().bind(mainPane.widthProperty().divide(3));
+    			equal.prefWidthProperty().bind(mainPane.widthProperty().divide(6));
     			equal.setFont(Font.font("SansSerif",
     					 FontWeight.BOLD, 14));
     			equal.styleProperty().bind(
