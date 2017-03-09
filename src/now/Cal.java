@@ -2,12 +2,18 @@ package now;
 
 
 import java.math.BigDecimal;
+import java.util.ArrayList;
+
 import javafx.application.Application;
 import javafx.beans.binding.Bindings;
 import javafx.beans.property.SimpleStringProperty;
 import javafx.stage.Stage;
+import javafx.scene.Group;
 import javafx.scene.Scene;
+import javafx.scene.canvas.Canvas;
+import javafx.scene.canvas.GraphicsContext;
 import javafx.scene.layout.VBox;
+import javafx.scene.paint.Color;
 import javafx.scene.control.Button;
 import javafx.scene.control.ComboBox;
 import javafx.scene.control.TextField;
@@ -16,6 +22,10 @@ import javafx.geometry.Insets;
 import javafx.geometry.Pos;
 import javafx.scene.text.*;
 public class Cal extends Application {
+	public static final int HEIGHT = 600;
+	public static final int WIDTH = 600;
+	public static final double XSCL = .01;
+	public static final double YSCL = .01;
 	
 	boolean x2= false;
 	
@@ -29,6 +39,9 @@ public class Cal extends Application {
     			mainPane.prefHeightProperty().bind(primaryStage.heightProperty());
     			mainPane.prefWidthProperty().bind(primaryStage.widthProperty());
     			mainPane.setStyle("-fx-background-color: #000000;");
+    			
+    			
+    			
     			
     			Button imp=new Button("improve");
     			imp.prefWidthProperty().bind(mainPane.widthProperty().divide(2));
@@ -625,8 +638,21 @@ public class Cal extends Application {
     	     });
 
     	     graph.setOnMouseClicked(e->{
-    	     	// To be completed
-			 });
+    	    	 Stage graphingStage = new Stage();
+    	    	 graphingStage.setTitle("Graphing calc test");
+    	 		Group root = new Group();
+    	 		Canvas canvas = new Canvas(HEIGHT, WIDTH);
+    	 		//set up graphics context for drawing
+    	 		GraphicsContext gc = canvas.getGraphicsContext2D();
+    	 		//plot points
+    	 		drawGraph(gc);
+    	 		//add canvas to scene
+    	 		root.getChildren().add(canvas);
+    	 		graphingStage.setScene(new Scene(root));
+    	 		//show scene
+    	 		graphingStage.show();
+
+    	         });
 
     	     dot.setOnMouseClicked(e->{
     	    
@@ -870,6 +896,46 @@ exp.charAt(i)=='%'||exp.charAt(i)=='/')&&i!=0)
     				primaryStage.setResizable(false);
 
     		        primaryStage.show();
+    		}
+    		
+    		//method to draw graph based on user equation
+    		public void drawGraph(GraphicsContext gc) {
+    			
+    			//get points to be graphed
+    			//TODO: function should receive equation string, pass to getPoints and parse from there
+    			ArrayList<Vector> points = getPoints();
+    			//translate origin to (0,0)
+    			gc.translate(WIDTH/2, HEIGHT/2);
+    			gc.setStroke(Color.BLACK);
+    			gc.setLineWidth(1);
+    			//draw x and y axes
+    			gc.strokeLine(-WIDTH / 2, 0, WIDTH / 2, 0);
+    			gc.strokeLine(0, -HEIGHT / 2, 0, HEIGHT / 2);
+    			//plot points from user equation
+    			for (int i = 1; i < points.size(); i++) {
+    				gc.strokeLine(points.get(i).getX(), points.get(i).getY(), points.get(i-1).getX(), points.get(i-1).getY());
+    			}
+    		}
+    		
+    		//method to return list of points to be plotted
+    		//NOTE: The entire equation must be multiplied by -1 when obtaining y values, 
+    		//the graphics in javafx invert the y axis (lower y coordinates higher) for whatever reason
+    		public ArrayList<Vector> getPoints() {
+    			
+    			double y = 0;
+    			ArrayList<Vector> pts = new ArrayList<Vector>();
+    			
+    			//loop from xmin to xmax, calculate y for each x
+    			for (double x = -WIDTH/2; x <= WIDTH/2; x += XSCL) {
+    				
+    				//test case, parabola
+    				y = -(Math.pow(x, 3));
+    				//test case, x^3
+    				//y= -(Math.pow(x, 3));
+    				//create vector object, add to array
+    				pts.add(new Vector(x / XSCL, y / YSCL));
+    			}
+    			return pts;
     		}
     		
     		
