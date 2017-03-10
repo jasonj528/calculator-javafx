@@ -1,8 +1,6 @@
 package now;
 
-import java.math.BigDecimal;
 import java.util.ArrayList;
-
 import javafx.application.Application;
 import javafx.beans.binding.Bindings;
 import javafx.beans.property.SimpleStringProperty;
@@ -22,7 +20,6 @@ import javafx.geometry.Pos;
 import javafx.scene.text.*;
 
 public class Cal extends Application {
-
 	public static final int HEIGHT = 600;
 	public static final int WIDTH = 600;
 	public static final double XSCL = .01;
@@ -30,7 +27,6 @@ public class Cal extends Application {
 
 	boolean x2 = false;
 	boolean res = false;
-
 	String exp = "";
 
 	@Override
@@ -42,8 +38,8 @@ public class Cal extends Application {
 		mainPane.setStyle("-fx-background-color: #000000;");
 
 		HBox hb = new HBox(10);
-		hb.getChildren().addAll(); // Can add buttons here. This is the Hbox below the text box and above the numpad
-									                 // buttons. hb.getChildren().addAll(your, buttons, go, here);
+		hb.getChildren().addAll();                                // Can add buttons here. This is the Hbox below the text box and above the numpad buttons. 
+		                                                                            // hb.getChildren().addAll(your, buttons, go, here);
 
 		TextField textField = new TextField();
 		textField.prefHeightProperty().bind(mainPane.heightProperty().divide(3));
@@ -54,49 +50,56 @@ public class Cal extends Application {
 		num9.prefHeightProperty().bind(mainPane.heightProperty().divide(5));
 		num9.prefWidthProperty().bind(mainPane.widthProperty().divide(6));
 		num9.setFont(Font.font("SansSerif", FontWeight.BOLD, 14));
-		num9.styleProperty().bind(Bindings.when(num9.hoverProperty()).then(new SimpleStringProperty("-fx-color: gray;"))
+		num9.styleProperty().bind(Bindings.when(num9.hoverProperty())
+				.then(new SimpleStringProperty("-fx-color: gray;"))
 				.otherwise(new SimpleStringProperty("-fx-color: white;")));
 		
 		Button num8 = new Button("8");
 		num8.prefHeightProperty().bind(mainPane.heightProperty().divide(5));
 		num8.prefWidthProperty().bind(mainPane.widthProperty().divide(6));
 		num8.setFont(Font.font("SansSerif", FontWeight.BOLD, 14));
-		num8.styleProperty().bind(Bindings.when(num8.hoverProperty()).then(new SimpleStringProperty("-fx-color: gray;"))
+		num8.styleProperty().bind(Bindings.when(num8.hoverProperty())
+				.then(new SimpleStringProperty("-fx-color: gray;"))
 				.otherwise(new SimpleStringProperty("-fx-color: white;")));
 		
 		Button num7 = new Button("7");
 		num7.prefHeightProperty().bind(mainPane.heightProperty().divide(5));
 		num7.prefWidthProperty().bind(mainPane.widthProperty().divide(6));
 		num7.setFont(Font.font("SansSerif", FontWeight.BOLD, 14));
-		num7.styleProperty().bind(Bindings.when(num7.hoverProperty()).then(new SimpleStringProperty("-fx-color: gray;"))
+		num7.styleProperty().bind(Bindings.when(num7.hoverProperty())
+				.then(new SimpleStringProperty("-fx-color: gray;"))
 				.otherwise(new SimpleStringProperty("-fx-color: white;")));
 		
 		Button div = new Button("/");
 		div.prefHeightProperty().bind(mainPane.heightProperty().divide(5));
 		div.prefWidthProperty().bind(mainPane.widthProperty().divide(6));
 		div.setFont(Font.font("SansSerif", FontWeight.BOLD, 14));
-		div.styleProperty().bind(Bindings.when(div.hoverProperty()).then(new SimpleStringProperty("-fx-color: gray;"))
+		div.styleProperty().bind(Bindings.when(div.hoverProperty())
+				.then(new SimpleStringProperty("-fx-color: gray;"))
 				.otherwise(new SimpleStringProperty("-fx-color: #434343;")));
 		
 		Button num6 = new Button("6");
 		num6.prefHeightProperty().bind(mainPane.heightProperty().divide(5));
 		num6.prefWidthProperty().bind(mainPane.widthProperty().divide(6));
 		num6.setFont(Font.font("SansSerif", FontWeight.BOLD, 14));
-		num6.styleProperty().bind(Bindings.when(num6.hoverProperty()).then(new SimpleStringProperty("-fx-color: gray;"))
+		num6.styleProperty().bind(Bindings.when(num6.hoverProperty()
+				).then(new SimpleStringProperty("-fx-color: gray;"))
 				.otherwise(new SimpleStringProperty("-fx-color: white;")));
 		
 		Button num5 = new Button("5");
 		num5.prefHeightProperty().bind(mainPane.heightProperty().divide(5));
 		num5.prefWidthProperty().bind(mainPane.widthProperty().divide(6));
 		num5.setFont(Font.font("SansSerif", FontWeight.BOLD, 14));
-		num5.styleProperty().bind(Bindings.when(num5.hoverProperty()).then(new SimpleStringProperty("-fx-color: gray;"))
+		num5.styleProperty().bind(Bindings.when(num5.hoverProperty())
+				.then(new SimpleStringProperty("-fx-color: gray;"))
 				.otherwise(new SimpleStringProperty("-fx-color: white;")));
 		
 		Button num4 = new Button("4");
 		num4.prefHeightProperty().bind(mainPane.heightProperty().divide(5));
 		num4.prefWidthProperty().bind(mainPane.widthProperty().divide(6));
 		num4.setFont(Font.font("SansSerif", FontWeight.BOLD, 14));
-		num4.styleProperty().bind(Bindings.when(num4.hoverProperty()).then(new SimpleStringProperty("-fx-color: gray;"))
+		num4.styleProperty().bind(Bindings.when(num4.hoverProperty())
+				.then(new SimpleStringProperty("-fx-color: gray;"))
 				.otherwise(new SimpleStringProperty("-fx-color: white;")));
 		
 		Button mul = new Button("*");
@@ -104,21 +107,24 @@ public class Cal extends Application {
 		mul.prefWidthProperty().bind(mainPane.widthProperty().divide(6));
 		mul.setFont(Font.font("SansSerif", FontWeight.BOLD, FontPosture.REGULAR, 14));
 		mul.styleProperty()
-				.bind(Bindings.when(mul.hoverProperty()).then(new SimpleStringProperty("-fx-color: #949494;"))
+				.bind(Bindings.when(mul.hoverProperty())
+						.then(new SimpleStringProperty("-fx-color: #949494;"))
 						.otherwise(new SimpleStringProperty("-fx-color: #2e2e2e;")));
 		
 		Button b1 = new Button("(");
 		b1.prefHeightProperty().bind(mainPane.heightProperty().divide(5));
 		b1.prefWidthProperty().bind(mainPane.widthProperty().divide(6));
 		b1.setFont(Font.font("SansSerif", FontWeight.BOLD, 14));
-		b1.styleProperty().bind(Bindings.when(b1.hoverProperty()).then(new SimpleStringProperty("-fx-color: #4f7aa2;"))
+		b1.styleProperty().bind(Bindings.when(b1.hoverProperty())
+				.then(new SimpleStringProperty("-fx-color: #4f7aa2;"))
 				.otherwise(new SimpleStringProperty("-fx-color: #34516e;")));
 		
 		Button b2 = new Button(")");
 		b2.prefHeightProperty().bind(mainPane.heightProperty().divide(5));
 		b2.prefWidthProperty().bind(mainPane.widthProperty().divide(6));
 		b2.setFont(Font.font("SansSerif", FontWeight.BOLD, 14));
-		b2.styleProperty().bind(Bindings.when(b2.hoverProperty()).then(new SimpleStringProperty("-fx-color: #4f7aa2;"))
+		b2.styleProperty().bind(Bindings.when(b2.hoverProperty())
+				.then(new SimpleStringProperty("-fx-color: #4f7aa2;"))
 				.otherwise(new SimpleStringProperty("-fx-color: #34516e;")));
 		
 		Button backSpace = new Button("\u2190");
@@ -126,7 +132,8 @@ public class Cal extends Application {
 		backSpace.prefWidthProperty().bind(mainPane.widthProperty().divide(6));
 		backSpace.setFont(Font.font("SansSerif", FontWeight.BOLD, 14));
 		backSpace.styleProperty()
-				.bind(Bindings.when(backSpace.hoverProperty()).then(new SimpleStringProperty("-fx-color: #4f7aa2;"))
+				.bind(Bindings.when(backSpace.hoverProperty())
+						.then(new SimpleStringProperty("-fx-color: #4f7aa2;"))
 						.otherwise(new SimpleStringProperty("-fx-color: #34516e;")));
 		
 		Button home = new Button("\u2302");
@@ -134,28 +141,32 @@ public class Cal extends Application {
 		home.prefWidthProperty().bind(mainPane.widthProperty().divide(6));
 		home.setFont(Font.font("SansSerif", FontWeight.BOLD, 14));
 		home.styleProperty()
-				.bind(Bindings.when(home.hoverProperty()).then(new SimpleStringProperty("-fx-color: #4f7aa2;"))
+				.bind(Bindings.when(home.hoverProperty())
+						.then(new SimpleStringProperty("-fx-color: #4f7aa2;"))
 						.otherwise(new SimpleStringProperty("-fx-color: #34516e;")));
 		
 		Button num3 = new Button("3");
 		num3.prefHeightProperty().bind(mainPane.heightProperty().divide(5));
 		num3.prefWidthProperty().bind(mainPane.widthProperty().divide(6));
 		num3.setFont(Font.font("SansSerif", FontWeight.BOLD, 14));
-		num3.styleProperty().bind(Bindings.when(num3.hoverProperty()).then(new SimpleStringProperty("-fx-color: gray;"))
+		num3.styleProperty().bind(Bindings.when(num3.hoverProperty())
+				.then(new SimpleStringProperty("-fx-color: gray;"))
 				.otherwise(new SimpleStringProperty("-fx-color: white;")));
 		
 		Button num2 = new Button("2");
 		num2.prefHeightProperty().bind(mainPane.heightProperty().divide(5));
 		num2.prefWidthProperty().bind(mainPane.widthProperty().divide(6));
 		num2.setFont(Font.font("SansSerif", FontWeight.BOLD, 14));
-		num2.styleProperty().bind(Bindings.when(num2.hoverProperty()).then(new SimpleStringProperty("-fx-color: gray;"))
+		num2.styleProperty().bind(Bindings.when(num2.hoverProperty())
+				.then(new SimpleStringProperty("-fx-color: gray;"))
 				.otherwise(new SimpleStringProperty("-fx-color: white;")));
 		
 		Button num1 = new Button("1");
 		num1.prefHeightProperty().bind(mainPane.heightProperty().divide(5));
 		num1.prefWidthProperty().bind(mainPane.widthProperty().divide(6));
 		num1.setFont(Font.font("SansSerif", FontWeight.BOLD, 14));
-		num1.styleProperty().bind(Bindings.when(num1.hoverProperty()).then(new SimpleStringProperty("-fx-color: gray;"))
+		num1.styleProperty().bind(Bindings.when(num1.hoverProperty())
+				.then(new SimpleStringProperty("-fx-color: gray;"))
 				.otherwise(new SimpleStringProperty("-fx-color: white;")));
 		
 		Button sub = new Button("-");
@@ -163,7 +174,8 @@ public class Cal extends Application {
 		sub.prefWidthProperty().bind(mainPane.widthProperty().divide(6));
 		sub.setFont(Font.font("SansSerif", FontWeight.BOLD, 14));
 		sub.styleProperty()
-				.bind(Bindings.when(sub.hoverProperty()).then(new SimpleStringProperty("-fx-color: #949494;"))
+				.bind(Bindings.when(sub.hoverProperty())
+						.then(new SimpleStringProperty("-fx-color: #949494;"))
 						.otherwise(new SimpleStringProperty("-fx-color: #2e2e2e;")));
 		
 		Button xPower2 = new Button("x²");
@@ -171,7 +183,8 @@ public class Cal extends Application {
 		xPower2.prefWidthProperty().bind(mainPane.widthProperty().divide(6));
 		xPower2.setFont(Font.font("SansSerif", FontWeight.BOLD, 14));
 		xPower2.styleProperty()
-				.bind(Bindings.when(xPower2.hoverProperty()).then(new SimpleStringProperty("-fx-color: #4f7aa2;"))
+				.bind(Bindings.when(xPower2.hoverProperty())
+						.then(new SimpleStringProperty("-fx-color: #4f7aa2;"))
 						.otherwise(new SimpleStringProperty("-fx-color: #34516e;")));
 		
 		Button sqrt = new Button("\u221A");
@@ -179,14 +192,16 @@ public class Cal extends Application {
 		sqrt.prefWidthProperty().bind(mainPane.widthProperty().divide(6));
 		sqrt.setFont(Font.font("SansSerif", FontWeight.BOLD, 14));
 		sqrt.styleProperty()
-				.bind(Bindings.when(sqrt.hoverProperty()).then(new SimpleStringProperty("-fx-color: #4f7aa2;"))
+				.bind(Bindings.when(sqrt.hoverProperty())
+						.then(new SimpleStringProperty("-fx-color: #4f7aa2;"))
 						.otherwise(new SimpleStringProperty("-fx-color: #34516e;")));
 		
 		Button num0 = new Button("0");
 		num0.prefHeightProperty().bind(mainPane.heightProperty().divide(5));
 		num0.prefWidthProperty().bind(mainPane.widthProperty().divide(6));
 		num0.setFont(Font.font("SansSerif", FontWeight.BOLD, 14));
-		num0.styleProperty().bind(Bindings.when(num0.hoverProperty()).then(new SimpleStringProperty("-fx-color: gray;"))
+		num0.styleProperty().bind(Bindings.when(num0.hoverProperty())
+				.then(new SimpleStringProperty("-fx-color: gray;"))
 				.otherwise(new SimpleStringProperty("-fx-color: white;")));
 		
 		Button dot = new Button(".");
@@ -194,7 +209,8 @@ public class Cal extends Application {
 		dot.prefWidthProperty().bind(mainPane.widthProperty().divide(6));
 		dot.setFont(Font.font("SansSerif", FontWeight.BOLD, 14));
 		dot.styleProperty()
-				.bind(Bindings.when(dot.hoverProperty()).then(new SimpleStringProperty("-fx-color: #949494;"))
+				.bind(Bindings.when(dot.hoverProperty())
+						.then(new SimpleStringProperty("-fx-color: #949494;"))
 						.otherwise(new SimpleStringProperty("-fx-color: #2e2e2e;")));
 		
 		Button mod = new Button("%");
@@ -202,7 +218,8 @@ public class Cal extends Application {
 		mod.prefWidthProperty().bind(mainPane.widthProperty().divide(6));
 		mod.setFont(Font.font("SansSerif", FontWeight.BOLD, 14));
 		mod.styleProperty()
-				.bind(Bindings.when(mod.hoverProperty()).then(new SimpleStringProperty("-fx-color: #949494;"))
+				.bind(Bindings.when(mod.hoverProperty())
+						.then(new SimpleStringProperty("-fx-color: #949494;"))
 						.otherwise(new SimpleStringProperty("-fx-color: #2e2e2e;")));
 		
 		Button sum = new Button("+");
@@ -210,7 +227,8 @@ public class Cal extends Application {
 		sum.prefWidthProperty().bind(mainPane.widthProperty().divide(6));
 		sum.setFont(Font.font("SansSerif", FontWeight.BOLD, 14));
 		sum.styleProperty()
-				.bind(Bindings.when(sum.hoverProperty()).then(new SimpleStringProperty("-fx-color: #949494;"))
+				.bind(Bindings.when(sum.hoverProperty())
+						.then(new SimpleStringProperty("-fx-color: #949494;"))
 						.otherwise(new SimpleStringProperty("-fx-color: #2e2e2e;")));
 
 		Button graph = new Button("Graph");
@@ -218,7 +236,8 @@ public class Cal extends Application {
 		graph.prefWidthProperty().bind(mainPane.widthProperty().divide(6));
 		graph.setFont(Font.font("SansSerif", FontWeight.BOLD, 14));
 		graph.styleProperty()
-				.bind(Bindings.when(graph.hoverProperty()).then(new SimpleStringProperty("-fx-color: #f4a54d;"))
+				.bind(Bindings.when(graph.hoverProperty())
+						.then(new SimpleStringProperty("-fx-color: #f4a54d;"))
 						.otherwise(new SimpleStringProperty("-fx-color: #b96501;")));
 
 		Button equal = new Button("=");
@@ -226,7 +245,8 @@ public class Cal extends Application {
 		equal.prefWidthProperty().bind(mainPane.widthProperty().divide(6));
 		equal.setFont(Font.font("SansSerif", FontWeight.BOLD, 14));
 		equal.styleProperty()
-				.bind(Bindings.when(equal.hoverProperty()).then(new SimpleStringProperty("-fx-color: #f4a54d;"))
+				.bind(Bindings.when(equal.hoverProperty())
+						.then(new SimpleStringProperty("-fx-color: #f4a54d;"))
 						.otherwise(new SimpleStringProperty("-fx-color: #b96501;")));
 
 		HBox hBox1 = new HBox(5);
