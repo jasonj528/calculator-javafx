@@ -578,10 +578,8 @@ public class Cal extends Application {
 
 	// method to draw graph based on user equation
 	public void drawGraph(GraphicsContext gc) {
-
 		// get points to be graphed
-		// TODO: function should receive equation string, pass to getPoints and
-		// parse from there
+		// TODO: function should receive equation string, pass to getPoints and parse from there
 		ArrayList<Vector> points = getPoints();
 		// translate origin to (0,0)
 		gc.translate(WIDTH / 2, HEIGHT / 2);
@@ -601,13 +599,11 @@ public class Cal extends Application {
 	// NOTE: The entire equation must be multiplied by -1 when obtaining y values,
 	// the graphics in javafx invert the y axis (lower y coordinates higher) for whatever reason
 	public ArrayList<Vector> getPoints() {
-
 		double y = 0;
 		ArrayList<Vector> pts = new ArrayList<Vector>();
 
 		// loop from xmin to xmax, calculate y for each x
 		for (double x = -WIDTH / 2; x <= WIDTH / 2; x += XSCL) {
-
 			// test case, parabola
 			y = -(Math.pow(x, 3));
 			// test case, x^3
