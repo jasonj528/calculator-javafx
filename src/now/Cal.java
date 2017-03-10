@@ -635,10 +635,8 @@ public class Cal extends Application {
 	}
 
 	// method to return list of points to be plotted
-	// NOTE: The entire equation must be multiplied by -1 when obtaining y
-	// values,
-	// the graphics in javafx invert the y axis (lower y coordinates higher) for
-	// whatever reason
+	// NOTE: The entire equation must be multiplied by -1 when obtaining y values,
+	// the graphics in javafx invert the y axis (lower y coordinates higher) for whatever reason
 	public ArrayList<Vector> getPoints() {
 
 		double y = 0;
