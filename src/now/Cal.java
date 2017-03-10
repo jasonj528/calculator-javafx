@@ -414,17 +414,18 @@ public class Cal extends Application {
     			/* Make Horizontal box to contain menus. (This is the HBox you want to use if you want to add more menus at the top). 
     			 * Usage is: menuBox.getChildren().addAll(your, items, go, here); */
     	        HBox settingsBox = new HBox();
-    	        settingsBox.setAlignment(Pos.CENTER);
+    	        settingsBox.setAlignment(Pos.BASELINE_LEFT);
 
     	        // Make settings drop down menu
     			ComboBox<String> settingsComboBox = new ComboBox<String>();
-    			settingsComboBox.setValue("Basic Mode");			// This is the text you see on the comboBox
+    			settingsComboBox.setValue("View");			// This is the text you see on the comboBox
     			settingsComboBox.getItems().addAll(					// Items of the drop down menu
     				"Basic Mode",
     				"Advanced Mode",
     				"Programming Mode",
     				"Graphing Mode"    					
     			);
+    			settingsComboBox.prefWidthProperty().bind(mainPane.widthProperty().divide(6)); 
     	        
     			// Make base conversion drop down menu
     			ComboBox<String> baseComboBox = new ComboBox<String>();
