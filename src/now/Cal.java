@@ -421,7 +421,7 @@ public class Cal extends Application {
 
 		graph.setOnMouseClicked(e -> {
 			Stage graphingStage = new Stage();
-			graphingStage.setTitle("Graphing calc test");
+			graphingStage.setTitle("Graphing Calculator");
 			Group root = new Group();
 			Canvas canvas = new Canvas(HEIGHT, WIDTH);
 			// set up graphics context for drawing
@@ -564,8 +564,8 @@ public class Cal extends Application {
 			res = false;
 			x2 = false;
 		});
+		
 		textField.setDisable(true);
-
 		// textField.disabledProperty();
 
 		mainPane.getChildren().addAll(settingsBox, textField, hb, hBox1, hBox2, hBox3, hBox4);
@@ -573,7 +573,6 @@ public class Cal extends Application {
 		primaryStage.setTitle("Calculator");
 		primaryStage.setScene(scene);
 		primaryStage.setResizable(false);
-
 		primaryStage.show();
 	}
 
@@ -621,7 +620,5 @@ public class Cal extends Application {
 
 	public static void main(String[] args) {
 		Application.launch(args);
-
 	}
-
 }
