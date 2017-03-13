@@ -11,7 +11,6 @@
     <property name="source" value="1.8"/>
     <path id="JUnit 4.libraryclasspath">
         <pathelement location="libs/junit-4.12.jar"/>
-        <pathelement location="C:/Users/rniebling/.p2/pool/plugins/org.hamcrest.core_1.3.0.v201303031735.jar"/>
     </path>
     <path id="now.classpath">
         <pathelement location="bin"/>
