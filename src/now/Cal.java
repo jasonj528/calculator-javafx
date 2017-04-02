@@ -1,6 +1,8 @@
 package now;
 
 import java.util.ArrayList;
+import java.util.Arrays;
+
 import javafx.application.Application;
 import javafx.beans.binding.Bindings;
 import javafx.beans.property.SimpleStringProperty;
@@ -22,12 +24,12 @@ import javafx.scene.text.*;
 public class Cal extends Application {
 	public static final int HEIGHT = 600;
 	public static final int WIDTH = 600;
-	public static final double XSCL = .01;
-	public static final double YSCL = .01;
+	public static final double XSCL = 0.01;
+	public static final double YSCL = 0.01;
 
-	boolean x2 = false;
-	boolean res = false;
-	String exp = "";
+	boolean dec = false;   // not yet implemented, but this flag will make sure you can't cause a number format exception
+	boolean leftParen = false;
+	boolean rightParen = false;
 
 	@Override
 	public void start(Stage primaryStage) {
@@ -37,6 +39,9 @@ public class Cal extends Application {
 		mainPane.prefWidthProperty().bind(primaryStage.widthProperty());
 		mainPane.setStyle("-fx-background-color: #000000;");
 
+		Button[] nums = new Button[10];
+		ArrayList<Button> ops;
+		
 		HBox hb = new HBox(10);
 		hb.getChildren().addAll();                                // Can add buttons here. This is the Hbox below the text box and above the numpad buttons. 
 		                                                                            // hb.getChildren().addAll(your, buttons, go, here);
@@ -46,29 +51,16 @@ public class Cal extends Application {
 		textField.setStyle("-fx-font-size:29px;");
 		textField.setAlignment(Pos.BOTTOM_RIGHT);
 		
-		Button num9 = new Button("9");
-		num9.prefHeightProperty().bind(mainPane.heightProperty().divide(5));
-		num9.prefWidthProperty().bind(mainPane.widthProperty().divide(6));
-		num9.setFont(Font.font("SansSerif", FontWeight.BOLD, 14));
-		num9.styleProperty().bind(Bindings.when(num9.hoverProperty())
-				.then(new SimpleStringProperty("-fx-color: gray;"))
-				.otherwise(new SimpleStringProperty("-fx-color: white;")));
 		
-		Button num8 = new Button("8");
-		num8.prefHeightProperty().bind(mainPane.heightProperty().divide(5));
-		num8.prefWidthProperty().bind(mainPane.widthProperty().divide(6));
-		num8.setFont(Font.font("SansSerif", FontWeight.BOLD, 14));
-		num8.styleProperty().bind(Bindings.when(num8.hoverProperty())
-				.then(new SimpleStringProperty("-fx-color: gray;"))
-				.otherwise(new SimpleStringProperty("-fx-color: white;")));
-		
-		Button num7 = new Button("7");
-		num7.prefHeightProperty().bind(mainPane.heightProperty().divide(5));
-		num7.prefWidthProperty().bind(mainPane.widthProperty().divide(6));
-		num7.setFont(Font.font("SansSerif", FontWeight.BOLD, 14));
-		num7.styleProperty().bind(Bindings.when(num7.hoverProperty())
-				.then(new SimpleStringProperty("-fx-color: gray;"))
-				.otherwise(new SimpleStringProperty("-fx-color: white;")));
+		for (int i = 0; i <= 9; i++) {
+		    nums[i] = new Button(Integer.toString(i));
+		    nums[i].prefHeightProperty().bind(mainPane.heightProperty().divide(5));
+		    nums[i].prefWidthProperty().bind(mainPane.widthProperty().divide(6));
+		    nums[i].setFont(Font.font("SansSerif", FontWeight.BOLD, 14));
+		    nums[i].styleProperty().bind(Bindings.when(nums[i].hoverProperty())
+	                .then(new SimpleStringProperty("-fx-color: gray;"))
+	                .otherwise(new SimpleStringProperty("-fx-color: white;")));
+		}
 		
 		Button div = new Button("/");
 		div.prefHeightProperty().bind(mainPane.heightProperty().divide(5));
@@ -77,30 +69,6 @@ public class Cal extends Application {
 		div.styleProperty().bind(Bindings.when(div.hoverProperty())
 				.then(new SimpleStringProperty("-fx-color: gray;"))
 				.otherwise(new SimpleStringProperty("-fx-color: #434343;")));
-		
-		Button num6 = new Button("6");
-		num6.prefHeightProperty().bind(mainPane.heightProperty().divide(5));
-		num6.prefWidthProperty().bind(mainPane.widthProperty().divide(6));
-		num6.setFont(Font.font("SansSerif", FontWeight.BOLD, 14));
-		num6.styleProperty().bind(Bindings.when(num6.hoverProperty()
-				).then(new SimpleStringProperty("-fx-color: gray;"))
-				.otherwise(new SimpleStringProperty("-fx-color: white;")));
-		
-		Button num5 = new Button("5");
-		num5.prefHeightProperty().bind(mainPane.heightProperty().divide(5));
-		num5.prefWidthProperty().bind(mainPane.widthProperty().divide(6));
-		num5.setFont(Font.font("SansSerif", FontWeight.BOLD, 14));
-		num5.styleProperty().bind(Bindings.when(num5.hoverProperty())
-				.then(new SimpleStringProperty("-fx-color: gray;"))
-				.otherwise(new SimpleStringProperty("-fx-color: white;")));
-		
-		Button num4 = new Button("4");
-		num4.prefHeightProperty().bind(mainPane.heightProperty().divide(5));
-		num4.prefWidthProperty().bind(mainPane.widthProperty().divide(6));
-		num4.setFont(Font.font("SansSerif", FontWeight.BOLD, 14));
-		num4.styleProperty().bind(Bindings.when(num4.hoverProperty())
-				.then(new SimpleStringProperty("-fx-color: gray;"))
-				.otherwise(new SimpleStringProperty("-fx-color: white;")));
 		
 		Button mul = new Button("*");
 		mul.prefHeightProperty().bind(mainPane.heightProperty().divide(5));
@@ -145,30 +113,6 @@ public class Cal extends Application {
 						.then(new SimpleStringProperty("-fx-color: #4f7aa2;"))
 						.otherwise(new SimpleStringProperty("-fx-color: #34516e;")));
 		
-		Button num3 = new Button("3");
-		num3.prefHeightProperty().bind(mainPane.heightProperty().divide(5));
-		num3.prefWidthProperty().bind(mainPane.widthProperty().divide(6));
-		num3.setFont(Font.font("SansSerif", FontWeight.BOLD, 14));
-		num3.styleProperty().bind(Bindings.when(num3.hoverProperty())
-				.then(new SimpleStringProperty("-fx-color: gray;"))
-				.otherwise(new SimpleStringProperty("-fx-color: white;")));
-		
-		Button num2 = new Button("2");
-		num2.prefHeightProperty().bind(mainPane.heightProperty().divide(5));
-		num2.prefWidthProperty().bind(mainPane.widthProperty().divide(6));
-		num2.setFont(Font.font("SansSerif", FontWeight.BOLD, 14));
-		num2.styleProperty().bind(Bindings.when(num2.hoverProperty())
-				.then(new SimpleStringProperty("-fx-color: gray;"))
-				.otherwise(new SimpleStringProperty("-fx-color: white;")));
-		
-		Button num1 = new Button("1");
-		num1.prefHeightProperty().bind(mainPane.heightProperty().divide(5));
-		num1.prefWidthProperty().bind(mainPane.widthProperty().divide(6));
-		num1.setFont(Font.font("SansSerif", FontWeight.BOLD, 14));
-		num1.styleProperty().bind(Bindings.when(num1.hoverProperty())
-				.then(new SimpleStringProperty("-fx-color: gray;"))
-				.otherwise(new SimpleStringProperty("-fx-color: white;")));
-		
 		Button sub = new Button("-");
 		sub.prefHeightProperty().bind(mainPane.heightProperty().divide(5));
 		sub.prefWidthProperty().bind(mainPane.widthProperty().divide(6));
@@ -195,14 +139,6 @@ public class Cal extends Application {
 				.bind(Bindings.when(sqrt.hoverProperty())
 						.then(new SimpleStringProperty("-fx-color: #4f7aa2;"))
 						.otherwise(new SimpleStringProperty("-fx-color: #34516e;")));
-		
-		Button num0 = new Button("0");
-		num0.prefHeightProperty().bind(mainPane.heightProperty().divide(5));
-		num0.prefWidthProperty().bind(mainPane.widthProperty().divide(6));
-		num0.setFont(Font.font("SansSerif", FontWeight.BOLD, 14));
-		num0.styleProperty().bind(Bindings.when(num0.hoverProperty())
-				.then(new SimpleStringProperty("-fx-color: gray;"))
-				.otherwise(new SimpleStringProperty("-fx-color: white;")));
 		
 		Button dot = new Button(".");
 		dot.prefHeightProperty().bind(mainPane.heightProperty().divide(5));
@@ -231,12 +167,12 @@ public class Cal extends Application {
 						.then(new SimpleStringProperty("-fx-color: #949494;"))
 						.otherwise(new SimpleStringProperty("-fx-color: #2e2e2e;")));
 
-		Button graph = new Button("Graph");
-		graph.prefHeightProperty().bind(mainPane.heightProperty().divide(5));
-		graph.prefWidthProperty().bind(mainPane.widthProperty().divide(6));
-		graph.setFont(Font.font("SansSerif", FontWeight.BOLD, 14));
-		graph.styleProperty()
-				.bind(Bindings.when(graph.hoverProperty())
+		Button butx = new Button("x");
+		butx.prefHeightProperty().bind(mainPane.heightProperty().divide(5));
+		butx.prefWidthProperty().bind(mainPane.widthProperty().divide(6));
+		butx.setFont(Font.font("SansSerif", FontWeight.BOLD, 14));
+		butx.styleProperty()
+				.bind(Bindings.when(butx.hoverProperty())
 						.then(new SimpleStringProperty("-fx-color: #f4a54d;"))
 						.otherwise(new SimpleStringProperty("-fx-color: #b96501;")));
 
@@ -248,26 +184,29 @@ public class Cal extends Application {
 				.bind(Bindings.when(equal.hoverProperty())
 						.then(new SimpleStringProperty("-fx-color: #f4a54d;"))
 						.otherwise(new SimpleStringProperty("-fx-color: #b96501;")));
-
+		
+		// sub is a special case
+		ops = new ArrayList<>(Arrays.asList(div, mul, sum, mod));
+		
 		HBox hBox1 = new HBox(5);
 		hBox1.prefHeightProperty().bind(primaryStage.heightProperty().divide(4));
 		hBox1.prefWidthProperty().bind(primaryStage.widthProperty());
-		hBox1.getChildren().addAll(num7, num8, num9, div, backSpace, home);
+		hBox1.getChildren().addAll(nums[7], nums[8], nums[9], div, backSpace, home);
 		
 		HBox hBox2 = new HBox(5);
 		hBox2.prefHeightProperty().bind(primaryStage.heightProperty().divide(4));
 		hBox2.prefWidthProperty().bind(primaryStage.widthProperty());
-		hBox2.getChildren().addAll(num4, num5, num6, mul, b1, b2);
+		hBox2.getChildren().addAll(nums[4], nums[5], nums[6], mul, b1, b2);
 		
 		HBox hBox3 = new HBox(5);
 		hBox3.prefHeightProperty().bind(primaryStage.heightProperty().divide(4));
 		hBox3.prefWidthProperty().bind(primaryStage.widthProperty());
-		hBox3.getChildren().addAll(num1, num2, num3, sub, xPower2, sqrt);
+		hBox3.getChildren().addAll(nums[1], nums[2], nums[3], sub, xPower2, sqrt);
 		
 		HBox hBox4 = new HBox(5);
 		hBox4.prefHeightProperty().bind(primaryStage.heightProperty().divide(4));
 		hBox4.prefWidthProperty().bind(primaryStage.widthProperty());
-		hBox4.getChildren().addAll(num0, dot, mod, sum, graph, equal);
+		hBox4.getChildren().addAll(nums[0], dot, mod, sum, butx, equal);
 
 		/*
 		 * Make Horizontal box to contain menus. (This is the HBox you want to
@@ -298,291 +237,144 @@ public class Cal extends Application {
 		baseComboBox.prefWidthProperty().bind(mainPane.widthProperty().divide(4));         // Sets the preferred width of this menu to be 1/4 the width of the calculator
 		baseComboBox.prefHeightProperty().bind(mainPane.heightProperty().divide(15));
 		settingsBox.getChildren().addAll(settingsComboBox);                                                    // Adds the combo box to the menuBox
+		
+		for (Button b : nums) {
+		    b.setOnMouseClicked(e -> {
+		        if (!rightParen) {
+                    textField.appendText(b.getText());
+		            leftParen = false;
+		        }
+		    });
+		}
 
-		num0.setOnMouseClicked(e -> {
-			String x = "0";
-			exp += x;
-			textField.setText(exp);
-			if (res == true) {
-				exp = "";
-				textField.setText(exp);
-				String x2 = "0";
-				exp += x2;
-				textField.setText(exp);
-				res = false;
-			}
-		});
-		
-		num1.setOnMouseClicked(e -> {
-			String x = "1";
-			exp += x;
-			textField.setText(exp);
-			if (res == true) {
-				exp = "";
-				textField.setText(exp);
-				String x2 = "1";
-				exp += x2;
-				textField.setText(exp);
-				res = false;
-			}
-		});
-		
-		num2.setOnMouseClicked(e -> {
-			String x = "2";
-			exp += x;
-			textField.setText(exp);
-			if (res == true) {
-				exp = "";
-				textField.setText(exp);
-				String x2 = "2";
-				exp += x2;
-				textField.setText(exp);
-				res = false;
-			}
-		});
-		
-		num3.setOnMouseClicked(e -> {
-			String x = "3";
-			exp += x;
-			textField.setText(exp);
-			if (res == true) {
-				exp = "";
-				textField.setText(exp);
-				String x2 = "3";
-				exp += x2;
-				textField.setText(exp);
-				res = false;
-			}
-		});
-		
-		num4.setOnMouseClicked(e -> {
-			String x = "4";
-			exp += x;
-			textField.setText(exp);
-			if (res == true) {
-				exp = "";
-				textField.setText(exp);
-				String x2 = "4";
-				exp += x2;
-				textField.setText(exp);
-				res = false;
-			}
-		});
-		
-		num5.setOnMouseClicked(e -> {
-			String x = "5";
-			exp += x;
-			textField.setText(exp);
-			if (res == true) {
-				exp = "";
-				textField.setText(exp);
-				String x2 = "5";
-				exp += x2;
-				textField.setText(exp);
-				res = false;
-			}
-		});
-		
-		num6.setOnMouseClicked(e -> {
-			String x = "6";
-			exp += x;
-			textField.setText(exp);
-			if (res == true) {
-				exp = "";
-				textField.setText(exp);
-				String x2 = "6";
-				exp += x2;
-				textField.setText(exp);
-				res = false;
-			}
-		});
-		
-		num7.setOnMouseClicked(e -> {
-			String x = "7";
-			exp += x;
-			textField.setText(exp);
-			if (res == true) {
-				exp = "";
-				textField.setText(exp);
-				String x2 = "7";
-				exp += x2;
-				textField.setText(exp);
-				res = false;
-			}
-		});
-		
-		num8.setOnMouseClicked(e -> {
-			String x = "8";
-			exp += x;
-			textField.setText(exp);
-			if (res == true) {
-				exp = "";
-				textField.setText(exp);
-				String x2 = "8";
-				exp += x2;
-				textField.setText(exp);
-				res = false;
-			}
-		});
-		
-		num9.setOnMouseClicked(e -> {
-			String x = "9";
-			exp += x;
-			textField.setText(exp);
-			if (res == true) {
-				exp = "";
-				textField.setText(exp);
-				String x2 = "9";
-				exp += x2;
-				textField.setText(exp);
-				res = false;
-			}
-		});
-
-		graph.setOnMouseClicked(e -> {
-			Stage graphingStage = new Stage();
-			graphingStage.setTitle("Graphing Calculator");
-			Group root = new Group();
-			Canvas canvas = new Canvas(HEIGHT, WIDTH);
-			// set up graphics context for drawing
-			GraphicsContext gc = canvas.getGraphicsContext2D();
-			// plot points
-			drawGraph(gc);
-			// add canvas to scene
-			root.getChildren().add(canvas);
-			graphingStage.setScene(new Scene(root));
-			// show scene
-			graphingStage.show();
+		butx.setOnMouseClicked(e -> {
+			String txt = textField.getText();
+		    if (txt.equals("") || (!rightParen && txt.charAt(txt.length() - 1) == ' ')) {
+		        textField.appendText(butx.getText());
+		        leftParen = false;
+		    }
 		});
 
 		dot.setOnMouseClicked(e -> {
-			if (x2 == false) {
-				String x = ".";
-				exp += x;
-				textField.setText(exp);
-				res = false;
-				x2 = true;
+			if (!dec && !rightParen) {
+			    textField.appendText(dot.getText());
+			    leftParen = false;
+			}
+			    
+		});
+		
+		for (Button b : ops) {
+		    b.setOnMouseClicked(e -> {
+		        String txt = textField.getText();
+	            if (!txt.equals("") && 
+	                    txt.charAt(txt.length() - 1) != ' ' && !leftParen) {
+	                if (!rightParen)
+                        textField.appendText(" ");
+                    textField.appendText(b.getText() + " ");
+	            }
+		    });
+		}
+
+		sub.setOnMouseClicked(e -> {
+		    String txt = textField.getText();
+		    if (txt.equals(""))
+			    textField.setText(sub.getText());
+			else if (txt.charAt(txt.length() - 1) == ' ')
+			    textField.appendText(sub.getText());
+			else if (txt.charAt(txt.length() - 1) != ' ' && !leftParen) {
+			    if (!rightParen)
+			        textField.appendText(" ");
+			    textField.appendText(sub.getText() + " ");
 			}
 		});
 		
-		mod.setOnMouseClicked(e -> {
-			String x = "%";
-			exp += x;
-			textField.setText(exp);
-			res = false;
-			x2 = false;
+		xPower2.setOnMouseClicked(e -> {
+		    String txt = textField.getText();
+		    if (!txt.equals("") && 
+                    txt.charAt(txt.length() - 1) != ' ')
+		        if (!txt.equals("") && 
+                        txt.charAt(txt.length() - 1) != ' ') {
+                    if (!rightParen)
+                        textField.appendText(" ");
+                    textField.appendText("^ 2");
+                    leftParen = false;
+                }
 		});
 		
-		mul.setOnMouseClicked(e -> {
-			String x = "*";
-			exp += x;
-			textField.setText(exp);
-			res = false;
-			x2 = false;
-		});
-		
-		div.setOnMouseClicked(e -> {
-			String x = "/";
-			exp += x;
-			textField.setText(exp);
-			res = false;
-			x2 = false;
-		});
-		
-		sum.setOnMouseClicked(e -> {
-			String x = "+";
-			exp += x;
-			textField.setText(exp);
-			res = false;
-			x2 = false;
-		});
-
-		sub.setOnMouseClicked(e -> {
-			String x = "-";
-			exp += x;
-			textField.setText(exp);
-			res = false;
-			x2 = false;
+		sqrt.setOnMouseClicked(e -> {
+		    String txt = textField.getText();
+		    if (!txt.equals("") && 
+                    txt.charAt(txt.length() - 1) != ' ')
+		        if (!txt.equals("") && 
+                        txt.charAt(txt.length() - 1) != ' ') {
+                    if (!rightParen)
+                        textField.appendText(" ");
+                    textField.appendText("^ 0.5");
+                    leftParen = false;
+                }
 		});
 
 		equal.setOnMouseClicked(e -> {
 			try {
-				exp = exam.solve2(exp);
-				textField.setText(exp);
-				res = true;
-				x2 = false;
+			    String rpn = Parser.rpn(textField.getText());
+			    if (rpn.indexOf('x') < 0)
+			        textField.setText(Double.toString(Parser.calculate(rpn)));
+			    else {
+			        Stage graphingStage = new Stage();
+		            graphingStage.setTitle("Graphing Calculator");
+		            Group root = new Group();
+		            Canvas canvas = new Canvas(HEIGHT, WIDTH);
+		            // set up graphics context for drawing
+		            GraphicsContext gc = canvas.getGraphicsContext2D();
+		            // plot points
+		            drawGraph(gc, Parser.rpn(textField.getText()));
+		            // add canvas to scene
+		            root.getChildren().add(canvas);
+		            graphingStage.setScene(new Scene(root));
+		            // show scene
+		            graphingStage.show();
+			    }
 			} catch (NullPointerException eed) {
 			} catch (NumberFormatException eed) {
 			}
 		});
 
 		home.setOnMouseClicked(e -> {
-			exp = "";
-			textField.setText(exp);
-			x2 = false;
-			res = false;
+			textField.setText("");
 		});
+		
 		backSpace.setOnMouseClicked(e -> {
 			try {
-				int i = 1;
-				exp = exp.substring(0, exp.length() - i);
-				i++;
-				textField.setText(exp);
-				res = false;
-				x2 = false;
-			} catch (IndexOutOfBoundsException ees) {
+			    String txt = textField.getText();
+			    if (txt.length() < 2)
+			        textField.setText("");
+			    else if (txt.charAt(txt.length() - 1) == ' ')
+			        textField.setText(txt.substring(0, txt.length() - 3));
+			    else
+			        textField.setText(txt.substring(0, txt.length() - 1));
+			} catch (IndexOutOfBoundsException ex) {
+			    textField.setText("");
 			}
 		});
 
-		/**
-		 * here we do it 4-5^ 4-(5)^
-		 * 
-		 * @param e
-		 */
-		xPower2.setOnMouseClicked(e -> {
-			exp += "^";
-			int yy = 0;
-			int yy2 = 0;
-			for (int i = 0; i < exp.length(); i++) {
-				if (exp.charAt(i) == '^') {
-					yy = i;
-				}
-			}
-			for (int i = yy; i >= 1; i--) {
-				if ((exp.charAt(i) == '-' || exp.charAt(i) == '+' || exp.charAt(i) == '*' || exp.charAt(i) == '%'
-						|| exp.charAt(i) == '/') && i != 0) {
-					yy2 = i + 1;
-					break;
-				}
-			}
-			String h = exp.substring(0, yy2);
-			String u = exp.substring(yy2, yy);
-			exp = "";
-			exp = h + "(" + u + "^" + ")";
-			textField.setText(exp);
-			res = false;
-			x2 = false;
-		});
-		
 		b1.setOnMouseClicked(e -> {
-			exp += "(";
-			textField.setText(exp);
-			res = false;
-			x2 = false;
+		    String txt = textField.getText();
+            if (txt.equals(""))
+                textField.setText(b1.getText());
+            else if (!rightParen && txt.charAt(txt.length() - 1) == ' ') {
+                textField.appendText(b1.getText() + " ");
+                leftParen = true;
+            }
+                
 		});
 		
 		b2.setOnMouseClicked(e -> {
-			exp += ")";
-			textField.setText(exp);
-			res = false;
-			x2 = false;
-		});
-		
-		sqrt.setOnMouseClicked(e -> {
-			exp += "S" + "(";
-			textField.setText(exp);
-			res = false;
-			x2 = false;
+		    String txt = textField.getText();
+		    if (!txt.equals("") && !leftParen && txt.charAt(txt.length() - 1) != ' ') {
+		        textField.appendText(" " + b2.getText() + " ");
+		        rightParen = true;
+		    }
+		        
 		});
 		
 		textField.setDisable(true);
@@ -597,10 +389,9 @@ public class Cal extends Application {
 	}
 
 	// method to draw graph based on user equation
-	public void drawGraph(GraphicsContext gc) {
+	public void drawGraph(GraphicsContext gc, String rpn) {
 		// get points to be graphed
-		// TODO: function should receive equation string, pass to getPoints and parse from there
-		ArrayList<Vector> points = getPoints();
+		ArrayList<Vector> points = getPoints(rpn);
 		// translate origin to (0,0)
 		gc.translate(WIDTH / 2, HEIGHT / 2);
 		gc.setStroke(Color.BLACK);
@@ -618,17 +409,14 @@ public class Cal extends Application {
 	// method to return list of points to be plotted
 	// NOTE: The entire equation must be multiplied by -1 when obtaining y values,
 	// the graphics in javafx invert the y axis (lower y coordinates higher) for whatever reason
-	public ArrayList<Vector> getPoints() {
+	// Another NOTE: doesn't display when the graph is translated because for example x^2 + 5 doesn't scale 5 to the window size
+	public ArrayList<Vector> getPoints(String rpn) {
 		double y = 0;
 		ArrayList<Vector> pts = new ArrayList<Vector>();
-
 		// loop from xmin to xmax, calculate y for each x
 		for (double x = -WIDTH / 2; x <= WIDTH / 2; x += XSCL) {
-			// test case, parabola
-			y = -(Math.pow(x, 3));
-			// test case, x^3
-			// y= -(Math.pow(x, 3));
-			// create vector object, add to array
+		    String test = rpn.replaceAll("x", String.format("%f", x));
+			y = -1.0 * Parser.calculate(test);
 			pts.add(new Vector(x / XSCL, y / YSCL));
 		}
 		return pts;
